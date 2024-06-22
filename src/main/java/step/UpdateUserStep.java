@@ -9,7 +9,8 @@ import static io.restassured.RestAssured.given;
 
 public class UpdateUserStep {
     private static final String REGISTER_USER = "/api/auth/register";
-    public static final String DELETED_OR_UPDATE_USER = "/api/auth/user";
+    public static final String DELETED_USER = "/api/auth/user";
+    public static final String UPDATE_USER = "/api/auth/user";
 
     @Step("Create user")
     public ValidatableResponse createUser(User user) {
@@ -26,7 +27,7 @@ public class UpdateUserStep {
         given()
                 .header("Authorization", accessToken)
                 .when()
-                .delete(DELETED_OR_UPDATE_USER)
+                .delete(DELETED_USER)
                 .then();
     }
 
@@ -37,7 +38,7 @@ public class UpdateUserStep {
                 .contentType(ContentType.JSON)
                 .body("{\"" + fieldName + "\":\"" + newValue + "\"}")
                 .when()
-                .patch(DELETED_OR_UPDATE_USER)
+                .patch(UPDATE_USER)
                 .then();
     }
 
@@ -47,7 +48,7 @@ public class UpdateUserStep {
                 .contentType(ContentType.JSON)
                 .body("{\"" + fieldName + "\":\"" + newValue + "\"}")
                 .when()
-                .patch(DELETED_OR_UPDATE_USER)
+                .patch(UPDATE_USER)
                 .then();
     }
 }
