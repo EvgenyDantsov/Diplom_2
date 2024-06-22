@@ -16,7 +16,7 @@ import static io.restassured.RestAssured.given;
 public class CreateOrderStep {
     private static final String INGREDIENTS = "/api/ingredients";
     private static final String REGISTER_USER = "/api/auth/register";
-    public static final String DELETED_OR_UPDATE_USER = "/api/auth/user";
+    public static final String DELETED_USER = "/api/auth/user";
     private static final String ORDERS = "/api/orders";
 
     @Step("Create user")
@@ -35,7 +35,7 @@ public class CreateOrderStep {
                 .header("Authorization", accessToken)
                 .contentType(ContentType.JSON)
                 .when()
-                .delete(DELETED_OR_UPDATE_USER)
+                .delete(DELETED_USER)
                 .then();
     }
 
