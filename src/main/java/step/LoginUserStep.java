@@ -11,6 +11,7 @@ public class LoginUserStep {
     private static final String REGISTER_USER = "/api/auth/register";
     public static final String DELETED_USER = "/api/auth/user";
     public static final String LOGIN_USER = "/api/auth/login";
+    public static final String LOGOUT_USER = "/api/auth/logout";
 
     @Step("Create user")
     public ValidatableResponse createUser(User user) {
@@ -47,7 +48,7 @@ public class LoginUserStep {
                 .contentType(ContentType.JSON)
                 .body("{\"token\":\"" + refreshToken + "\"}")
                 .when()
-                .post("/api/auth/logout")
+                .post(LOGOUT_USER)
                 .then();
     }
 }
